@@ -126,7 +126,7 @@ server()
 #启用服务
 #在package.json中设置
 #scripts": {
-#  "server": "node server.js"
+#  "start": "node server.js"
 #}
 #使用下面命令开启
-npm run server
+npm run start
