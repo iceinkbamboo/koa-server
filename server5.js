@@ -27,6 +27,11 @@ function server5() {
     let data = await query(sql)
     return data
   }
+  async function getExam(examid) {
+    let sql = "select * from exam where examid = '" + examid + "'"
+    let data = await query(sql)
+    return data
+  }
   let home = new Router()
   // 子路由
   home.post('/login', async ( ctx )=>{
@@ -79,6 +84,20 @@ function server5() {
     } else {
       response.msg = '接口调用失败'
       response.data = ctx
+    }
+    ctx.body = response
+  })
+
+  home.post('/getExam', async (ctx) => {
+    let response = {}
+    let examid = ctx.request.body.examid
+    let data = await getExam(examid)
+    if (data.length != 0) {
+      response.stat = 1
+      response.data = data[0]
+    } else {
+      response.stat = 0
+      response.msg = '接口调用失败'
     }
     ctx.body = response
   })
