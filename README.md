@@ -1,6 +1,6 @@
 # source
 
-> A Vue.js project
+> nodejs
 
 ## Build Setup
 
@@ -72,7 +72,6 @@ module.exports = { query }
 #创建server1.js——server...js
 #搭建get/post服务
 function server5() {
-  console.log('开始')
   const Koa = require('koa')
   const Router = require('koa-router')
   const bodyParser = require('koa-bodyparser')
@@ -87,7 +86,6 @@ function server5() {
   async function postUser(username) {
     let sql = "select * from user where username = '" + username + "'"
     let data = await query(sql)
-    console.log(data)
     return data
   }
   let home = new Router()
@@ -97,7 +95,6 @@ function server5() {
     ctx.body = data[0]
   })
   home.post('/getUser', async (ctx) => {
-    console.log(ctx.request.body)
     let username = ctx.request.body.username
     let data = await postUser(username)
     ctx.body = data[0]
@@ -130,3 +127,11 @@ server()
 #}
 #使用下面命令开启
 npm run start
+
+#本地热更新
+#在package.json中设置
+#scripts": {
+#  "dev": "node watch.js"
+#}
+#watch.js是对应热更新代码
+npm run dev

@@ -1,2 +1,2 @@
-const server  = require('./server5.js')
+const server  = require('./src/index.js')
 server()
